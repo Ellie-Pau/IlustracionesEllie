@@ -1,0 +1,165 @@
+/* ==========================================================================
+   VARIABLES DE DISEÑO (Estilo Oscuro Cinematográfico)
+   ========================================================================== */
+:root {
+  --bg-main: #FFD3DE;       /* Fondo oscuro de la página */
+  --surface: #FF6699;       /* Fondo de las tarjetas */
+  --text-primary: #FFF7F7;  /* Texto principal */
+  --text-muted: #FFF7F7;     /* Texto secundario / descripciones */
+  --accent: #AA7483;         /* Color de acento (Rojo vibrante) */
+  
+  --font-family: 'Poppins', sans-serif;
+  
+  /* Espaciados */
+  --space-sm: 1.2rem;
+  --space-md: 1.8rem;
+  --space-lg: 2.6rem;
+  --space-xl: 3.6rem;
+}
+
+/* ==========================================================================
+   RESET & ESTILOS BASE
+   ========================================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  line-height: 1.6;
+  padding: var(--space-xl) 0;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+  height: auto; /* Permite que las imágenes mantengan su proporción vertical estilo Pinterest */
+}
+
+/* ==========================================================================
+   ESTRUCTURA DE LA SECCIÓN
+   ========================================================================== */
+.section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+  text-align: center;
+}
+
+.eyebrow {
+  display: inline-block;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: var(--space-sm);
+}
+
+h2 {
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-sm);
+}
+
+.section-description {
+  color: var(--text-muted);
+  max-width: 60ch;
+  margin: 0 auto var(--space-xl) auto;
+  font-size: 1.05rem;
+}
+
+/* ==========================================================================
+   REJILLA ESTILO PINTEREST (CSS MASONRY COLUMNS)
+   ========================================================================== */
+.pinterest-gallery {
+  column-count: 3;           /* 3 Columnas por defecto en escritorio */
+  column-gap: var(--space-lg); /* Espaciado horizontal entre columnas */
+  text-align: left;          /* Devuelve la alineación a la izquierda para las tarjetas */
+  width: 100%;
+}
+
+/* ==========================================================================
+   TARJETAS DEL PORTAFOLIO
+   ========================================================================== */
+.pinterest-card {
+  display: inline-block;     /* Evita que la tarjeta se parta al final de una columna */
+  width: 100%;
+  margin-bottom: var(--space-lg); /* Espacio vertical entre tarjetas */
+  background-color: var(--surface);
+  border-radius: 1.8rem;     /* Esquinas redondeadas de la tarjeta */
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  overflow: hidden;          /* Recorta las esquinas de las fotos automáticamente */
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Efecto hover interactivo */
+.pinterest-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* Contenedor de imagen */
+.pinterest-card__media {
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Imagen con esquinas redondeadas en la cabecera */
+.pinterest-card__media img {
+  width: 100%;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Micro-zoom de la foto al hacer hover */
+.pinterest-card:hover .pinterest-card__media img {
+  transform: scale(1.03);
+}
+
+/* Contenedor del texto (Títulos y Descripción) */
+.pinterest-card__content {
+  padding: 1.4rem 1.6rem;
+}
+
+.pinterest-card__content h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.pinterest-card__content p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (Adaptación de columnas)
+   ========================================================================== */
+@media (max-width: 992px) {
+  .pinterest-gallery {
+    column-count: 2; /* 2 Columnas en tabletas o pantallas medianas */
+    column-gap: var(--space-md);
+  }
+  .pinterest-card {
+    margin-bottom: var(--space-md);
+  }
+}
+
+@media (max-width: 576px) {
+  .pinterest-gallery {
+    column-count: 1; /* 1 Sola columna fluida en smartphones */
+  }
+  body {
+    padding: var(--space-md) 0;
+  }
+}
